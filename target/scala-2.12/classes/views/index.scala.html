@@ -1,0 +1,9 @@
+@()
+
+@main("Welcome to Play") {
+  @if(flash.containsKey("success")) {
+    @flash.get("success")
+  } else {
+    Welcome!
+  }
+}

@@ -1,0 +1,18 @@
+@import Entities.User
+@(tests: List[User])
+
+@main() {
+    <form method="post">
+        User:
+        <input type="text" placeholder="First Name" name="fname" value="">
+        <input type="text" placeholder="Last Name" name="lname" value="">
+        <input type="number" placeholder="Year" name="year" value="">
+        <input type="number" placeholder="Month" name="month" value="">
+        <input type="number" placeholder="Date" name="date" value="">
+    </form>
+    <ul>
+    @for(test <- tests) {
+        <li>@test.getFirstName @test.getLastName <a href="#">x</a></li>
+    }
+    </ul>
+}
