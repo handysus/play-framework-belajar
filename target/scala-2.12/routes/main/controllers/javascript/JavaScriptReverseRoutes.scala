@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:D:/Play/belajar/play-framework-belajar/conf/routes
-// @DATE:Wed Jan 31 17:18:34 ICT 2018
+// @DATE:Wed Jan 31 17:33:55 ICT 2018
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -30,7 +30,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:10
+    // @LINE:11
     def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.delete",
       """
@@ -40,12 +40,22 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:9
+    // @LINE:10
     def save: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.save",
       """
         function() {
           return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "save"})
+        }
+      """
+    )
+  
+    // @LINE:9
+    def updating: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.updating",
+      """
+        function(objId0) {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "updating/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("objId", objId0))})
         }
       """
     )
@@ -72,7 +82,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:14
+  // @LINE:15
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -80,7 +90,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:14
+    // @LINE:15
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """

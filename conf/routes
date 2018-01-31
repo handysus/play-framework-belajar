@@ -6,6 +6,7 @@
 GET     /                           controllers.HomeController.index()
 GET     /update/:objId                           controllers.HomeController.update(objId: String)
 GET     /:fName                           controllers.HomeController.searchByFirstName(fName: String)
+POST    /updating/:objId                        controllers.HomeController.updating(objId: String)
 POST    /save                           controllers.HomeController.save()
 GET  /delete/:objId                  controllers.HomeController.delete(objId: String)
 

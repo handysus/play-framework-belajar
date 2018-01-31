@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:D:/Play/belajar/play-framework-belajar/conf/routes
-// @DATE:Wed Jan 31 17:18:34 ICT 2018
+// @DATE:Wed Jan 31 17:33:55 ICT 2018
 
 import play.api.mvc.Call
 
@@ -25,16 +25,22 @@ package controllers {
       Call("GET", _prefix + { _defaultPrefix } + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("fName", fName)))
     }
   
-    // @LINE:10
+    // @LINE:11
     def delete(objId:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "delete/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("objId", objId)))
     }
   
-    // @LINE:9
+    // @LINE:10
     def save(): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "save")
+    }
+  
+    // @LINE:9
+    def updating(objId:String): Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "updating/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("objId", objId)))
     }
   
     // @LINE:7
@@ -51,14 +57,14 @@ package controllers {
   
   }
 
-  // @LINE:14
+  // @LINE:15
   class ReverseAssets(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:14
+    // @LINE:15
     def versioned(file:Asset): Call = {
       implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map(("path", "/public"))); _rrc
       Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[play.api.mvc.PathBindable[Asset]].unbind("file", file))

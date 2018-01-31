@@ -14,6 +14,8 @@ import views.html.index;
 import views.html.update;
 
 import javax.inject.Inject;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,8 +46,8 @@ public class HomeController extends Controller {
         userDAO.save(user3);
     }
 
-    private void saveByRequest(String fName, String lName, int year, int month, int date, Boolean isPremium){
-        User user = new User(fName, lName, new Date(year, month, date ), isPremium);
+    private void saveByRequest(String fName, String lName, Date date, Boolean isPremium){
+        User user = new User(fName, lName, date, isPremium);
         userDAO.save(user);
     }
 
@@ -89,7 +91,6 @@ public class HomeController extends Controller {
     }
 
     public Result searchByFirstName(String fName){
-        System.out.println(fName);
         List<User> test2 = retrieveByFirstName(fName);
         return ok(Json.toJson(test2));
     }
@@ -99,6 +100,19 @@ public class HomeController extends Controller {
         return ok(update.render(test));
     }
 
+    public Result updating(String objId) {
+        System.out.println(objId);
+        DynamicForm dynamicForm = formFactory.form().bindFromRequest();
+        String firstname = dynamicForm.get("fname");
+        String lastname = dynamicForm.get("lname");
+        String strDate = dynamicForm.get("date");
+
+        ObjectId objectId = new ObjectId(objId);
+        Query<User> query = morphiaService.getDatastore().createQuery(User.class).field("_id").equal(objectId);
+
+        return redirect("/");
+    }
+
     public Result delete(String objId) {
         ObjectId objectId = new ObjectId(objId);
         Query<User> query = morphiaService.getDatastore().createQuery(User.class).field("_id").equal(objectId);
@@ -106,23 +120,15 @@ public class HomeController extends Controller {
         return redirect("/");
     }
 
-    public Result save() {
+    public Result save() throws ParseException {
         DynamicForm dynamicForm = formFactory.form().bindFromRequest();
         String firstname = dynamicForm.get("fname");
-        System.out.println(firstname);
         String lastname = dynamicForm.get("lname");
-        System.out.println(lastname);
-        String strYear = dynamicForm.get("year");
-        String strMonth = dynamicForm.get("month");
         String strDate = dynamicForm.get("date");
-        Integer year = Integer.valueOf(strYear);
-        Integer month = Integer.valueOf(strMonth);
-        Integer date = Integer.valueOf(strDate);
-
-//        HomeController homeController = new HomeController(firstname, lastname, year, month, date);
-//        homeController.saveEntityExample();
-        saveByRequest(firstname, lastname, year, month, date, true);
-//        return ok("saved");
+        System.out.println(strDate);
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+        System.out.println(date);
+        saveByRequest(firstname, lastname, date, true);
         return redirect("/");
     }
 }
