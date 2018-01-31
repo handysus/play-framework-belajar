@@ -62,7 +62,7 @@ Seq[Any](format.raw/*1.19*/("""
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">CRUD</a>
+                    <a class="navbar-brand" href="/">CRUD</a>
                 </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -99,9 +99,9 @@ Seq[Any](format.raw/*1.19*/("""
 
               /*
                   -- GENERATED --
-                  DATE: Mon Jan 29 06:08:35 ICT 2018
+                  DATE: Wed Jan 31 16:48:35 ICT 2018
                   SOURCE: D:/Play/belajar/play-framework-belajar/app/views/main.scala.html
-                  HASH: 041cfd154f910a157b8d9e6f9d164e41e0f464b1
+                  HASH: cc2e24d81bba2c2e6aa16c2c20488b716748444f
                   MATRIX: 945->1|1057->18|1085->20|1543->451|1558->457|1654->531|3445->2295|3473->2302|3510->2312|3643->2418|3658->2424|3742->2487|3902->2620|3917->2626|4011->2698
                   LINES: 28->1|33->1|34->2|44->12|44->12|44->12|79->47|79->47|80->48|82->50|82->50|82->50|84->52|84->52|84->52
                   -- GENERATED --

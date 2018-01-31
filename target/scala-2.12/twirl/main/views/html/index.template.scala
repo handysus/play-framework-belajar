@@ -22,37 +22,67 @@ import play.mvc.Http.Context.Implicit._
 import play.data._
 import play.core.j.PlayFormsMagicForJava._
 /*1.2*/import Entities.User
-/*2.2*/import helper._
-/*3.2*/import java.util
+/*2.2*/import java.util
 
 object index extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template1[util.List[User],play.twirl.api.HtmlFormat.Appendable] {
 
   /**/
-  def apply/*4.2*/(tests: util.List[User]):play.twirl.api.HtmlFormat.Appendable = {
+  def apply/*3.2*/(tests: util.List[User]):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
 
 
-Seq[Any](format.raw/*4.26*/("""
+Seq[Any](format.raw/*3.26*/("""
 
-"""),_display_(/*6.2*/main()/*6.8*/ {_display_(Seq[Any](format.raw/*6.10*/("""
-    """),format.raw/*7.5*/("""<form method="post" action=""""),_display_(/*7.34*/routes/*7.40*/.HomeController.save()),format.raw/*7.62*/("""">
-        User:
-        <input type="text" placeholder="First Name" name="fname">
-        <input type="text" placeholder="Last Name" name="lname">
-        <input type="number" placeholder="Year" name="year">
-        <input type="number" placeholder="Month" name="month">
-        <input type="number" placeholder="Date" name="date">
+"""),_display_(/*5.2*/main()/*5.8*/ {_display_(Seq[Any](format.raw/*5.10*/("""
+    """),format.raw/*6.72*/("""
+    """),format.raw/*7.5*/("""<h2>User</h2>
 
-        <input type="submit" value="Submit" />
+    <form method="post" action=""""),_display_(/*9.34*/routes/*9.40*/.HomeController.save()),format.raw/*9.62*/("""" class="form-inline">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="First Name" name="fname" required>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Last Name" name="lname" required>
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" placeholder="Year" name="year">
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" placeholder="Month" name="month">
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" placeholder="Date" name="date">
+        </div>
+        <input type="submit" value="Submit" class="btn btn-info" />
     </form>
-    <ul>
 
-    """),_display_(/*19.6*/for(test <- tests) yield /*19.24*/ {_display_(Seq[Any](format.raw/*19.26*/("""
-        """),format.raw/*20.9*/("""<li>"""),_display_(/*20.14*/test/*20.18*/.getFirstName),format.raw/*20.31*/(""" """),_display_(/*20.33*/test/*20.37*/.getLastName),format.raw/*20.49*/(""" """),format.raw/*20.50*/("""<a href="#">x</a></li>
-    """)))}),format.raw/*21.6*/("""
-    """),format.raw/*22.5*/("""</ul>
-""")))}),format.raw/*23.2*/("""
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Birthdate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        """),_display_(/*39.10*/for(test <- tests) yield /*39.28*/ {_display_(Seq[Any](format.raw/*39.30*/("""
+            """),format.raw/*40.13*/("""<tr>
+                <td>"""),_display_(/*41.22*/test/*41.26*/.getFirstName),format.raw/*41.39*/("""</td>
+                <td>"""),_display_(/*42.22*/test/*42.26*/.getLastName),format.raw/*42.38*/("""</td>
+                <td>"""),_display_(/*43.22*/test/*43.26*/.getBirthDate.format("dd/MM/yyy")),format.raw/*43.59*/("""</td>
+                <td>
+                    <a href="/update/"""),_display_(/*45.39*/test/*45.43*/.getObjectId),format.raw/*45.55*/("""">Edit</a>
+                    <a href="/delete/"""),_display_(/*46.39*/test/*46.43*/.getObjectId),format.raw/*46.55*/("""">Delete</a>
+                </td>
+            </tr>
+        """)))}),format.raw/*49.10*/("""
+        """),format.raw/*50.9*/("""</tbody>
+    </table>
+""")))}),format.raw/*52.2*/("""
+
 """))
       }
     }
@@ -69,11 +99,11 @@ Seq[Any](format.raw/*4.26*/("""
 
               /*
                   -- GENERATED --
-                  DATE: Wed Jan 31 09:53:22 ICT 2018
+                  DATE: Wed Jan 31 17:17:43 ICT 2018
                   SOURCE: D:/Play/belajar/play-framework-belajar/app/views/index.scala.html
-                  HASH: e33df36d08c43c2ee5ac89f3c12bd3998f3e08ea
-                  MATRIX: 651->1|679->24|702->42|1032->61|1151->85|1181->90|1194->96|1233->98|1265->104|1320->133|1334->139|1376->161|1822->581|1856->599|1896->601|1933->611|1965->616|1978->620|2012->633|2041->635|2054->639|2087->651|2116->652|2175->681|2208->687|2246->695
-                  LINES: 24->1|25->2|26->3|31->4|36->4|38->6|38->6|38->6|39->7|39->7|39->7|39->7|51->19|51->19|51->19|52->20|52->20|52->20|52->20|52->20|52->20|52->20|52->20|53->21|54->22|55->23
+                  HASH: 1cb374ceae8d2b1ceb81089f565404dd9094f0c6
+                  MATRIX: 651->1|679->24|1009->43|1128->67|1158->72|1171->78|1210->80|1243->153|1275->159|1351->209|1365->215|1407->237|2524->1327|2558->1345|2598->1347|2640->1361|2694->1388|2707->1392|2741->1405|2796->1433|2809->1437|2842->1449|2897->1477|2910->1481|2964->1514|3058->1581|3071->1585|3104->1597|3181->1647|3194->1651|3227->1663|3323->1728|3360->1738|3415->1763
+                  LINES: 24->1|25->2|30->3|35->3|37->5|37->5|37->5|38->6|39->7|41->9|41->9|41->9|71->39|71->39|71->39|72->40|73->41|73->41|73->41|74->42|74->42|74->42|75->43|75->43|75->43|77->45|77->45|77->45|78->46|78->46|78->46|81->49|82->50|84->52
                   -- GENERATED --
               */
           

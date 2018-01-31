@@ -1,5 +1,4 @@
 @import Entities.User
-@import helper._
 @import java.util
 @(tests: util.List[User])
 
@@ -41,10 +40,10 @@
             <tr>
                 <td>@test.getFirstName</td>
                 <td>@test.getLastName</td>
-                <td>@test.getBirthDate</td>
+                <td>@test.getBirthDate.format("dd/MM/yyy")</td>
                 <td>
-                    <a href="#">Edit</a>
-                    <a href="#">Delete</a>
+                    <a href="/update/@test.getObjectId">Edit</a>
+                    <a href="/delete/@test.getObjectId">Delete</a>
                 </td>
             </tr>
         }

@@ -4,9 +4,10 @@
 
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index()
+GET     /update/:objId                           controllers.HomeController.update(objId: String)
 GET     /:fName                           controllers.HomeController.searchByFirstName(fName: String)
 POST    /save                           controllers.HomeController.save()
-DELETE /save                            controllers.HomeController.delete()
+GET  /delete/:objId                  controllers.HomeController.delete(objId: String)
 
 
 # Map static resources from the /public folder to the /assets URL path

@@ -1,0 +1,29 @@
+@import Entities.User
+@import helper._
+@import java.util
+@(tests: User)
+
+@main() {
+    @*<li>@test.getFirstName @test.getLastName <a href="#">x</a></li>*@
+    <h2>User</h2>
+
+    <form method="post" action="@routes.HomeController.save()" class="form-inline">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="First Name" name="fname" value="@tests.getFirstName" required>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Last Name" name="lname" value="@tests.getLastName" required>
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" placeholder="Year" value="@tests.getBirthDate.getYear" name="year">
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" placeholder="Month" value="@tests.getBirthDate.getMonth" name="month">
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" placeholder="Date" value="@tests.getBirthDate.getDate" name="date">
+        </div>
+        <input type="submit" value="Update" class="btn btn-info" />
+    </form>
+}
+

@@ -3,12 +3,15 @@ package controllers;
 import Entities.User;
 import dao.UserDAO;
 import dao.UserDAOImpl;
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.query.Query;
 import play.data.DynamicForm;
 import play.data.FormFactory;
 import play.libs.Json;
 import play.mvc.*;
 import services.MorphiaService;
 import views.html.index;
+import views.html.update;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -64,6 +67,15 @@ public class HomeController extends Controller {
         }
     }
 
+    private User getByObjId(String objId){
+        try {
+            return userDAO.getByObjectId(objId);
+        }
+        catch (Exception e){
+            return null;
+        }
+    }
+
     /**
      * An action that renders an HTML page with a welcome message.
      * The configuration in the <code>routes</code> file means that
@@ -82,8 +94,16 @@ public class HomeController extends Controller {
         return ok(Json.toJson(test2));
     }
 
-    public Result delete() {
-        return null;
+    public Result update(String objId) {
+        User test = getByObjId(objId);
+        return ok(update.render(test));
+    }
+
+    public Result delete(String objId) {
+        ObjectId objectId = new ObjectId(objId);
+        Query<User> query = morphiaService.getDatastore().createQuery(User.class).field("_id").equal(objectId);
+        morphiaService.getDatastore().delete(query);
+        return redirect("/");
     }
 
     public Result save() {
