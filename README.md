@@ -9,3 +9,4 @@ Play Framework (Java) MongoDB morphia
 
 31 Januari 2018
 - Dynamic Form
+- Delete Data
