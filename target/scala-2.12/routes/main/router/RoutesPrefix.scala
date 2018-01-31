@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:D:/Play/belajar/play-framework-belajar/conf/routes
-// @DATE:Mon Jan 29 06:07:11 ICT 2018
+// @DATE:Wed Jan 31 09:31:11 ICT 2018
 
 
 package router {

@@ -22,40 +22,45 @@ import play.mvc.Http.Context.Implicit._
 import play.data._
 import play.core.j.PlayFormsMagicForJava._
 /*1.2*/import Entities.User
+/*2.2*/import helper._
+/*3.2*/import java.util
 
-object index extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template1[List[User],play.twirl.api.HtmlFormat.Appendable] {
+object index extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template1[util.List[User],play.twirl.api.HtmlFormat.Appendable] {
 
   /**/
-  def apply/*2.2*/(tests: List[User]):play.twirl.api.HtmlFormat.Appendable = {
+  def apply/*4.2*/(tests: util.List[User]):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
 
 
-Seq[Any](format.raw/*2.21*/("""
+Seq[Any](format.raw/*4.26*/("""
 
-"""),_display_(/*4.2*/main()/*4.8*/ {_display_(Seq[Any](format.raw/*4.10*/("""
-    """),format.raw/*5.5*/("""<form method="post">
+"""),_display_(/*6.2*/main()/*6.8*/ {_display_(Seq[Any](format.raw/*6.10*/("""
+    """),format.raw/*7.5*/("""<form method="post" action=""""),_display_(/*7.34*/routes/*7.40*/.HomeController.save()),format.raw/*7.62*/("""">
         User:
-        <input type="text" placeholder="First Name" name="fname" value="">
-        <input type="text" placeholder="Last Name" name="lname" value="">
-        <input type="number" placeholder="Year" name="year" value="">
-        <input type="number" placeholder="Month" name="month" value="">
-        <input type="number" placeholder="Date" name="date" value="">
+        <input type="text" placeholder="First Name" name="fname">
+        <input type="text" placeholder="Last Name" name="lname">
+        <input type="number" placeholder="Year" name="year">
+        <input type="number" placeholder="Month" name="month">
+        <input type="number" placeholder="Date" name="date">
+
+        <input type="submit" value="Submit" />
     </form>
     <ul>
-    """),_display_(/*14.6*/for(test <- tests) yield /*14.24*/ {_display_(Seq[Any](format.raw/*14.26*/("""
-        """),format.raw/*15.9*/("""<li>"""),_display_(/*15.14*/test/*15.18*/.getFirstName),format.raw/*15.31*/(""" """),_display_(/*15.33*/test/*15.37*/.getLastName),format.raw/*15.49*/(""" """),format.raw/*15.50*/("""<a href="#">x</a></li>
-    """)))}),format.raw/*16.6*/("""
-    """),format.raw/*17.5*/("""</ul>
-""")))}),format.raw/*18.2*/("""
+
+    """),_display_(/*19.6*/for(test <- tests) yield /*19.24*/ {_display_(Seq[Any](format.raw/*19.26*/("""
+        """),format.raw/*20.9*/("""<li>"""),_display_(/*20.14*/test/*20.18*/.getFirstName),format.raw/*20.31*/(""" """),_display_(/*20.33*/test/*20.37*/.getLastName),format.raw/*20.49*/(""" """),format.raw/*20.50*/("""<a href="#">x</a></li>
+    """)))}),format.raw/*21.6*/("""
+    """),format.raw/*22.5*/("""</ul>
+""")))}),format.raw/*23.2*/("""
 """))
       }
     }
   }
 
-  def render(tests:List[User]): play.twirl.api.HtmlFormat.Appendable = apply(tests)
+  def render(tests:util.List[User]): play.twirl.api.HtmlFormat.Appendable = apply(tests)
 
-  def f:((List[User]) => play.twirl.api.HtmlFormat.Appendable) = (tests) => apply(tests)
+  def f:((util.List[User]) => play.twirl.api.HtmlFormat.Appendable) = (tests) => apply(tests)
 
   def ref: this.type = this
 
@@ -64,11 +69,11 @@ Seq[Any](format.raw/*2.21*/("""
 
               /*
                   -- GENERATED --
-                  DATE: Mon Jan 29 06:39:46 ICT 2018
+                  DATE: Wed Jan 31 09:53:22 ICT 2018
                   SOURCE: D:/Play/belajar/play-framework-belajar/app/views/index.scala.html
-                  HASH: ead56952343080878c754db43dde2ab87023d929
-                  MATRIX: 651->1|980->24|1094->43|1124->48|1137->54|1176->56|1208->62|1665->493|1699->511|1739->513|1776->523|1808->528|1821->532|1855->545|1884->547|1897->551|1930->563|1959->564|2018->593|2051->599|2089->607
-                  LINES: 24->1|29->2|34->2|36->4|36->4|36->4|37->5|46->14|46->14|46->14|47->15|47->15|47->15|47->15|47->15|47->15|47->15|47->15|48->16|49->17|50->18
+                  HASH: e33df36d08c43c2ee5ac89f3c12bd3998f3e08ea
+                  MATRIX: 651->1|679->24|702->42|1032->61|1151->85|1181->90|1194->96|1233->98|1265->104|1320->133|1334->139|1376->161|1822->581|1856->599|1896->601|1933->611|1965->616|1978->620|2012->633|2041->635|2054->639|2087->651|2116->652|2175->681|2208->687|2246->695
+                  LINES: 24->1|25->2|26->3|31->4|36->4|38->6|38->6|38->6|39->7|39->7|39->7|39->7|51->19|51->19|51->19|52->20|52->20|52->20|52->20|52->20|52->20|52->20|52->20|53->21|54->22|55->23
                   -- GENERATED --
               */
           

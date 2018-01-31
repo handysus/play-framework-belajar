@@ -3,11 +3,14 @@ package controllers;
 import Entities.User;
 import dao.UserDAO;
 import dao.UserDAOImpl;
+import play.data.DynamicForm;
+import play.data.FormFactory;
 import play.libs.Json;
 import play.mvc.*;
 import services.MorphiaService;
 import views.html.index;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +24,9 @@ public class HomeController extends Controller {
     private MorphiaService morphiaService;
     private UserDAO userDAO;
 
+    @Inject
+    private FormFactory formFactory;
+
     public HomeController(){
         this.morphiaService = new MorphiaService();
         this.userDAO = new UserDAOImpl(User.class, morphiaService.getDatastore());
@@ -30,7 +36,6 @@ public class HomeController extends Controller {
         User user1 = new User("Alex", "Foo", new Date(1978, 10, 10 ), true);
         User user2 = new User("Sacha", "Foo", new Date(1989, 2, 23), false);
         User user3 = new User("Alex", "Bar", new Date(1966, 5, 2), false);
-
         userDAO.save(user1);
         userDAO.save(user2);
         userDAO.save(user3);
@@ -60,49 +65,14 @@ public class HomeController extends Controller {
     }
 
     /**
-    private List<User> retrieveEntityExample(){
-//        this.morphiaService = new MorphiaService();
-//        this.userDAO = new UserDAOImpl(User.class, morphiaService.getDatastore());
-        try {
-
-            User fetchedUser = userDAO.getByFirstNameLastName("Alex", "Bar");
-
-            System.out.println("firstName " + fetchedUser.getFirstName());
-            System.out.println("lastName " + fetchedUser.getLastName());
-            System.out.println("birthDate " + fetchedUser.getBirthDate().toGMTString());
-            System.out.println("hasPremiumAccess " + fetchedUser.getHasPremiumAccess());
-
-            System.out.println();
-
-
-            System.out.println("Retrive list of users by firstName ");
-
-            List<User> alexs = userDAO.getByFirstName("Alex");
-            System.out.println(alexs);
-            for (User user : alexs) {
-                System.out.println("firstName " + user.getFirstName());
-                System.out.println("lastName " + user.getLastName());
-                System.out.println("birthDate " + user.getBirthDate().toGMTString());
-                System.out.println("hasPremiumAccess " + user.getHasPremiumAccess());
-                System.out.println("-------");
-            }
-            return alexs;
-        }
-        catch(Exception e){
-            return new ArrayList<>();
-        }
-    }
-    */
-
-    /**
      * An action that renders an HTML page with a welcome message.
      * The configuration in the <code>routes</code> file means that
      * this method will be c    alled when the application receives a
      * <code>GET</code> request with a path of <code>/</code>.
      */
     public Result index() {
-        HomeController homeController = new HomeController();
-        List<User> test =  homeController.retrieveAll();
+//        HomeController homeController = new HomeController();
+        List<User> test =  retrieveAll();
         return ok(index.render(test));
     }
 
@@ -112,11 +82,58 @@ public class HomeController extends Controller {
         return ok(Json.toJson(test2));
     }
 
-    public Result save(String fname, String lName, int year, int month, int date, Boolean isPremium) {
-        HomeController homeController = new HomeController();
+    public Result save() {
+        DynamicForm dynamicForm = formFactory.form().bindFromRequest();
+        String firstname = dynamicForm.get("fname");
+        System.out.println(firstname);
+        String lastname = dynamicForm.get("lname");
+        System.out.println(lastname);
+        String strYear = dynamicForm.get("year");
+        String strMonth = dynamicForm.get("month");
+        String strDate = dynamicForm.get("date");
+        Integer year = Integer.valueOf(strYear);
+        Integer month = Integer.valueOf(strMonth);
+        Integer date = Integer.valueOf(strDate);
+
+//        HomeController homeController = new HomeController(firstname, lastname, year, month, date);
 //        homeController.saveEntityExample();
-        homeController.saveByRequest(fname,lName,year,month,date,true);
+        saveByRequest(firstname, lastname, year, month, date, true);
 //        return ok("saved");
         return redirect("/");
     }
 }
+
+/**
+ private List<User> retrieveEntityExample(){
+ //        this.morphiaService = new MorphiaService();
+ //        this.userDAO = new UserDAOImpl(User.class, morphiaService.getDatastore());
+ try {
+
+ User fetchedUser = userDAO.getByFirstNameLastName("Alex", "Bar");
+
+ System.out.println("firstName " + fetchedUser.getFirstName());
+ System.out.println("lastName " + fetchedUser.getLastName());
+ System.out.println("birthDate " + fetchedUser.getBirthDate().toGMTString());
+ System.out.println("hasPremiumAccess " + fetchedUser.getHasPremiumAccess());
+
+ System.out.println();
+
+
+ System.out.println("Retrive list of users by firstName ");
+
+ List<User> alexs = userDAO.getByFirstName("Alex");
+ System.out.println(alexs);
+ for (User user : alexs) {
+ System.out.println("firstName " + user.getFirstName());
+ System.out.println("lastName " + user.getLastName());
+ System.out.println("birthDate " + user.getBirthDate().toGMTString());
+ System.out.println("hasPremiumAccess " + user.getHasPremiumAccess());
+ System.out.println("-------");
+ }
+ return alexs;
+ }
+ catch(Exception e){
+ return new ArrayList<>();
+ }
+ }
+ */

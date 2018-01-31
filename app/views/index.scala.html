@@ -1,16 +1,21 @@
 @import Entities.User
-@(tests: List[User])
+@import helper._
+@import java.util
+@(tests: util.List[User])
 
 @main() {
-    <form method="post">
+    <form method="post" action="@routes.HomeController.save()">
         User:
-        <input type="text" placeholder="First Name" name="fname" value="">
-        <input type="text" placeholder="Last Name" name="lname" value="">
-        <input type="number" placeholder="Year" name="year" value="">
-        <input type="number" placeholder="Month" name="month" value="">
-        <input type="number" placeholder="Date" name="date" value="">
+        <input type="text" placeholder="First Name" name="fname">
+        <input type="text" placeholder="Last Name" name="lname">
+        <input type="number" placeholder="Year" name="year">
+        <input type="number" placeholder="Month" name="month">
+        <input type="number" placeholder="Date" name="date">
+
+        <input type="submit" value="Submit" />
     </form>
     <ul>
+
     @for(test <- tests) {
         <li>@test.getFirstName @test.getLastName <a href="#">x</a></li>
     }

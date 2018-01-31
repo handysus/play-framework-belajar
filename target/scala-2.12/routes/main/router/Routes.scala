@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:D:/Play/belajar/play-framework-belajar/conf/routes
-// @DATE:Mon Jan 29 06:07:11 ICT 2018
+// @DATE:Wed Jan 31 09:31:11 ICT 2018
 
 package router
 
@@ -42,7 +42,7 @@ class Routes(
   def documentation = List(
     ("""GET""", this.prefix, """controllers.HomeController.index()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """""" + "$" + """fName<[^/]+>""", """controllers.HomeController.searchByFirstName(fName:String)"""),
-    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """save""", """controllers.HomeController.save"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """save""", """controllers.HomeController.save()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -92,7 +92,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("save")))
   )
   private[this] lazy val controllers_HomeController_save2_invoker = createInvoker(
-    HomeController_0.save,
+    HomeController_0.save(),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
@@ -141,7 +141,7 @@ class Routes(
     // @LINE:8
     case controllers_HomeController_save2_route(params@_) =>
       call { 
-        controllers_HomeController_save2_invoker.call(HomeController_0.save)
+        controllers_HomeController_save2_invoker.call(HomeController_0.save())
       }
   
     // @LINE:12
