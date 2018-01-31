@@ -4,20 +4,51 @@
 @(tests: util.List[User])
 
 @main() {
-    <form method="post" action="@routes.HomeController.save()">
-        User:
-        <input type="text" placeholder="First Name" name="fname">
-        <input type="text" placeholder="Last Name" name="lname">
-        <input type="number" placeholder="Year" name="year">
-        <input type="number" placeholder="Month" name="month">
-        <input type="number" placeholder="Date" name="date">
+    @*<li>@test.getFirstName @test.getLastName <a href="#">x</a></li>*@
+    <h2>User</h2>
 
-        <input type="submit" value="Submit" />
+    <form method="post" action="@routes.HomeController.save()" class="form-inline">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="First Name" name="fname" required>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Last Name" name="lname" required>
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" placeholder="Year" name="year">
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" placeholder="Month" name="month">
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" placeholder="Date" name="date">
+        </div>
+        <input type="submit" value="Submit" class="btn btn-info" />
     </form>
-    <ul>
 
-    @for(test <- tests) {
-        <li>@test.getFirstName @test.getLastName <a href="#">x</a></li>
-    }
-    </ul>
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Birthdate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @for(test <- tests) {
+            <tr>
+                <td>@test.getFirstName</td>
+                <td>@test.getLastName</td>
+                <td>@test.getBirthDate</td>
+                <td>
+                    <a href="#">Edit</a>
+                    <a href="#">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
 }
+

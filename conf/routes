@@ -6,6 +6,7 @@
 GET     /                           controllers.HomeController.index()
 GET     /:fName                           controllers.HomeController.searchByFirstName(fName: String)
 POST    /save                           controllers.HomeController.save()
+DELETE /save                            controllers.HomeController.delete()
 
 
 # Map static resources from the /public folder to the /assets URL path

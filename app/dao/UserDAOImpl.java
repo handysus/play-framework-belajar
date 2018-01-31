@@ -32,4 +32,8 @@ public class UserDAOImpl extends BasicDAO<User, ObjectId> implements UserDAO {
         Query<User> query = getDatastore().createQuery(User.class);
         return query.asList();
     }
+
+    public List<User> getByObjectId(){
+        return null;
+    }
 }

@@ -82,6 +82,10 @@ public class HomeController extends Controller {
         return ok(Json.toJson(test2));
     }
 
+    public Result delete() {
+        return null;
+    }
+
     public Result save() {
         DynamicForm dynamicForm = formFactory.form().bindFromRequest();
         String firstname = dynamicForm.get("fname");
