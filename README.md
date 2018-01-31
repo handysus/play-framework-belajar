@@ -7,4 +7,5 @@ Play Framework (Java) MongoDB morphia
 - View by Firstname (json only)
 - Bower Bootstrap JQuery
 
-30 Januari 2018
+31 Januari 2018
+- Dynamic Form
