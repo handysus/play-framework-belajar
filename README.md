@@ -4,7 +4,7 @@ Play Framework (Java) MongoDB morphia
 - Create DB & Collection
 - Create Data
 - View All Data
-- View by Firstname (json only)
+- View by Firstname
 - Bower Bootstrap JQuery
 
 31 Januari 2018
